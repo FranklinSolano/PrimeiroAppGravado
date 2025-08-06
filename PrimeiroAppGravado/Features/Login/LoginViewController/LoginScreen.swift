@@ -7,7 +7,7 @@
 
 import UIKit
 
-class Screen: UIView {
+class LoginScreen: UIView {
     
     lazy var emailLabel: UILabel = {
         let label = UILabel()
