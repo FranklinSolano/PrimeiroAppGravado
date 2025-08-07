@@ -9,41 +9,10 @@ import UIKit
 
 class LoginScreen: UIView {
     
-    lazy var emailLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Email"
-        return label
-    }()
-    
-    lazy var emailTextField: UITextField = {
-        let textfield = UITextField()
-        textfield.translatesAutoresizingMaskIntoConstraints = false
-        textfield.placeholder = "Digite seu email"
-        textfield.layer.cornerRadius = 15
-        textfield.clipsToBounds = true
-        textfield.layer.borderColor = UIColor.red.cgColor
-        textfield.layer.borderWidth = 2
-        return textfield
-    }()
-    
-    lazy var passwordLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Password"
-        return label
-    }()
-    
-    lazy var passwordTextField: UITextField = {
-        let textfield = UITextField()
-        textfield.translatesAutoresizingMaskIntoConstraints = false
-        textfield.placeholder = "Digite sua Senha"
-        textfield.layer.cornerRadius = 15
-        textfield.clipsToBounds = true
-        textfield.layer.borderColor = UIColor.red.cgColor
-        textfield.layer.borderWidth = 2
-        return textfield
-    }()
+    lazy var emailLabel: Labeling = DSLabelAdapter()
+    lazy var emailTextField:  TextFielding = DSTextFieldAdapter()
+    lazy var passwordLabel:  Labeling = DSLabelAdapter()
+    lazy var passwordTextField: TextFielding = DSTextFieldAdapter()
     
     lazy var forgotPasswordButton: UIButton = {
         let button = UIButton()
@@ -73,17 +42,30 @@ class LoginScreen: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupElements()
-        setupConstrainsts()
-        backgroundColor = .darkGray
+        setupView()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    private func configureLabel() {
+        emailLabel.setDTO(.init(text: "Email"))
+        passwordLabel.setDTO(.init(text: "Password"))
+    }
     
-    private func setupElements(){
+    private func configureTextField(){
+        emailTextField.setDTO(.init(placeholder: "Digite o seu email", isSecureText: false))
+        passwordTextField.setDTO(.init(placeholder: "Digite o sua senha", isSecureText: true))
+        
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+    }
+    
+}
+
+extension LoginScreen: ViewCodeProtocol {
+    func setupElements() {
         addSubview(emailLabel)
         addSubview(emailTextField)
         addSubview(passwordLabel)
@@ -93,8 +75,7 @@ class LoginScreen: UIView {
         addSubview(registerButton)
     }
     
-    
-    private func setupConstrainsts() {
+    func setupConstraints() {
         NSLayoutConstraint.activate([
             
             emailLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 60),
@@ -122,15 +103,19 @@ class LoginScreen: UIView {
             loginButton.heightAnchor.constraint(equalToConstant: 50),
             
             registerButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor,constant: -10),
-            registerButton.centerXAnchor.constraint(equalTo: centerXAnchor),
-            
-            
-            
-            
-            
-            
+            registerButton.centerXAnchor.constraint(equalTo: centerXAnchor)
         ])
     }
     
+    func setupAdditionalConfiguration() {
+        backgroundColor = .darkGray
+        configureLabel()
+        configureTextField()
+    }
+    
+    
 }
 
+extension LoginScreen: UITextFieldDelegate {
+    
+}
