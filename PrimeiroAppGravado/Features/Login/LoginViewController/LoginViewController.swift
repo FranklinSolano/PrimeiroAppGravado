@@ -23,7 +23,7 @@ class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        self.viewScreen?.delegate = self
     }
     
 
@@ -40,5 +40,21 @@ class LoginViewController: UIViewController {
 
 
 extension LoginViewController: LoginViewControllerDisplay {
+    
+}
+
+extension LoginViewController: LoginScreenProtocol {
+    func actionForgotPasswrodBuuton() {
+        
+    }
+    
+    func actionLoginButton() {
+        
+    }
+    
+    func actionRegisterButton() {
+        
+    }
+    
     
 }

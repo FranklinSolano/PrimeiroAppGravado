@@ -7,38 +7,24 @@
 
 import UIKit
 
+protocol LoginScreenProtocol: AnyObject {
+    func actionForgotPasswrodBuuton()
+    func actionLoginButton()
+    func actionRegisterButton()
+}
+
 class LoginScreen: UIView {
+    
+    weak var delegate: LoginScreenProtocol?
     
     lazy var emailLabel: Labeling = DSLabelAdapter()
     lazy var emailTextField:  TextFielding = DSTextFieldAdapter()
     lazy var passwordLabel:  Labeling = DSLabelAdapter()
     lazy var passwordTextField: TextFielding = DSTextFieldAdapter()
-    
-    lazy var forgotPasswordButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Esqueceu sua senha?", for: .normal)
-        return button
-    }()
-    
-    lazy var loginButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Login", for: .normal)
-        button.layer.cornerRadius = 15
-        button.clipsToBounds = true
-        button.layer.borderColor = UIColor.red.cgColor
-        button.layer.borderWidth = 2
-        button.backgroundColor = .red
-        return button
-    }()
-    
-    lazy var registerButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Nao tem conta ? Registre-se?", for: .normal)
-        return button
-    }()
+    lazy var forgotPasswordButton: Buttoning = DSButtonTitlesAdapter()
+    lazy var loginButton: Buttoning = DSButtonAdapter()
+    lazy var registerButton: Buttoning = DSButtonTitlesAdapter()
+    lazy var imageLoginBackGroud: ImageViewing = DSImageViewAdapter(image: UIImage(named: "imageLogin1"))
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -62,10 +48,28 @@ class LoginScreen: UIView {
         passwordTextField.delegate = self
     }
     
+    private func configureButton(){
+        forgotPasswordButton.setDTO(.init(title: "Forgot Password?", isEnable: true, font: DSFonts.titleSemiBold16))
+        forgotPasswordButton.onClick { [weak self] in
+            self?.delegate?.actionForgotPasswrodBuuton()
+        }
+        
+        loginButton.setDTO(.init(title: "Login", isEnable: true, font: DSFonts.titleBold18))
+        loginButton.onClick { [weak self] in
+            self?.delegate?.actionLoginButton()
+        }
+        
+        registerButton.setDTO(.init(title: "Nao tem conta? Cadastre-se", isEnable: true, font: DSFonts.titleSemiBold16))
+        registerButton.onClick { [weak self] in
+            self?.delegate?.actionRegisterButton()
+        }
+        
+    }
 }
 
 extension LoginScreen: ViewCodeProtocol {
     func setupElements() {
+        addSubview(imageLoginBackGroud)
         addSubview(emailLabel)
         addSubview(emailTextField)
         addSubview(passwordLabel)
@@ -77,6 +81,11 @@ extension LoginScreen: ViewCodeProtocol {
     
     func setupConstraints() {
         NSLayoutConstraint.activate([
+            
+            imageLoginBackGroud.topAnchor.constraint(equalTo: topAnchor),
+            imageLoginBackGroud.leadingAnchor.constraint(equalTo: leadingAnchor),
+            imageLoginBackGroud.trailingAnchor.constraint(equalTo: trailingAnchor),
+            imageLoginBackGroud.bottomAnchor.constraint(equalTo: bottomAnchor),
             
             emailLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 60),
             emailLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
@@ -111,6 +120,7 @@ extension LoginScreen: ViewCodeProtocol {
         backgroundColor = .darkGray
         configureLabel()
         configureTextField()
+        configureButton()
     }
     
     
