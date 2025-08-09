@@ -24,7 +24,7 @@ class DSImageView: UIImageView {
     }
     
     private func setupImage(){
-        self.contentMode = .scaleAspectFill
+        self.contentMode = .scaleAspectFit
         self.clipsToBounds = true
         self.layer.cornerRadius = 15
     }

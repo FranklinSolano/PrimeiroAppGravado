@@ -117,7 +117,7 @@ extension LoginScreen: ViewCodeProtocol {
     }
     
     func setupAdditionalConfiguration() {
-        backgroundColor = .darkGray
+
         configureLabel()
         configureTextField()
         configureButton()

@@ -9,8 +9,6 @@ import UIKit
 
 final class LoginFactory {
     
-
-    
     func makeFactory(navigationController: UINavigationController) -> (viewcontroller: LoginViewController, coordinator: LoginCoordinator){
         
         let coordinator = LoginCoordinator()
