@@ -7,6 +7,7 @@
 
 import UIKit
 
+//MARK: - LoginFactory
 final class LoginFactory {
     
     func makeFactory(navigationController: UINavigationController) -> (viewcontroller: LoginViewController, coordinator: LoginCoordinator){
@@ -25,7 +26,6 @@ final class LoginFactory {
         presenter.view = loginVc
         
         return (loginVc, coordinator)
-        
-        
+
     }
 }

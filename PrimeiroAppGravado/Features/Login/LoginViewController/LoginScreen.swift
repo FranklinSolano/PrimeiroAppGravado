@@ -7,14 +7,17 @@
 
 import UIKit
 
+//MARK: - LoginScreenProtocol
 protocol LoginScreenProtocol: AnyObject {
     func actionForgotPasswrodBuuton()
     func actionLoginButton()
     func actionRegisterButton()
 }
 
-class LoginScreen: UIView {
+//MARK: - LoginScreen
+final class LoginScreen: UIView {
     
+    // MARK: - Properties
     weak var delegate: LoginScreenProtocol?
     
     lazy var emailLabel: Labeling = DSLabelAdapter()
@@ -26,6 +29,7 @@ class LoginScreen: UIView {
     lazy var registerButton: Buttoning = DSButtonTitlesAdapter()
     lazy var imageLoginBackGroud: ImageViewing = DSImageViewAdapter(image: UIImage(named: "imageLogin1"))
     
+    // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
@@ -35,6 +39,7 @@ class LoginScreen: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Outher Methods
     private func configureLabel() {
         emailLabel.setDTO(.init(text: "Email"))
         passwordLabel.setDTO(.init(text: "Password"))
@@ -67,6 +72,7 @@ class LoginScreen: UIView {
     }
 }
 
+//MARK: - ViewCodeProtocol
 extension LoginScreen: ViewCodeProtocol {
     func setupElements() {
         addSubview(imageLoginBackGroud)
@@ -121,10 +127,9 @@ extension LoginScreen: ViewCodeProtocol {
         configureTextField()
         configureButton()
     }
-    
-    
 }
 
+//MARK: - UITextFieldDelegate
 extension LoginScreen: UITextFieldDelegate {
     
 }

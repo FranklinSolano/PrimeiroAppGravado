@@ -7,10 +7,12 @@
 
 import Foundation
 
+//MARK: - LoginPresenting
 protocol LoginPresenting {
     func navigationRegisterPresenter()
 }
 
+//MARK: - LoginPresenter
 final class LoginPresenter {
     
     weak var view: LoginViewControllerDisplay?
@@ -23,6 +25,7 @@ final class LoginPresenter {
     
 }
 
+//MARK: - LoginPresenting
 extension LoginPresenter: LoginPresenting {
     func navigationRegisterPresenter() {
         coordinator.navigationRegisterCoordinator()

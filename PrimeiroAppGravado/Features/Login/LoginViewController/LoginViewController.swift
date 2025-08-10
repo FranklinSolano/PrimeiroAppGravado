@@ -7,26 +7,19 @@
 
 import UIKit
 
+//MARK: - LoginViewControllerDisplay
 protocol LoginViewControllerDisplay: AnyObject {
     
 }
 
-class LoginViewController: UIViewController {
+//MARK: - LoginViewController
+final class LoginViewController: UIViewController {
     
+    //MARK: - Properties
     var viewScreen: LoginScreen?
     let interactor: LoginInteracting
     
-    override func loadView() {
-        viewScreen = LoginScreen()
-        view = viewScreen
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.viewScreen?.delegate = self
-    }
-    
-
+    //MARK: - init
     init(interactor: LoginInteracting) {
         self.interactor = interactor
         super.init(nibName: nil, bundle: nil)
@@ -36,13 +29,24 @@ class LoginViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - Lifecycle
+    override func loadView() {
+        viewScreen = LoginScreen()
+        view = viewScreen
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.viewScreen?.delegate = self
+    }
 }
 
-
+//MARK: - LoginViewControllerDisplay
 extension LoginViewController: LoginViewControllerDisplay {
     
 }
 
+//MARK: - LoginScreenProtocol
 extension LoginViewController: LoginScreenProtocol {
     func actionForgotPasswrodBuuton() {
         
@@ -55,6 +59,4 @@ extension LoginViewController: LoginScreenProtocol {
     func actionRegisterButton() {
         interactor.navigationRegisterinteractor()
     }
-    
-    
 }

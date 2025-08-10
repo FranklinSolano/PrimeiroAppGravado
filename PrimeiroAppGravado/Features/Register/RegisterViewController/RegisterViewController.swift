@@ -7,24 +7,19 @@
 
 import UIKit
 
+//MARK: - RegisterViewControllerDisplay
 protocol RegisterViewControllerDisplay: AnyObject {
     
 }
 
+//MARK: - RegisterViewController
 final class RegisterViewController: UIViewController {
     
+    //MARK: - Properties
     var screen: RegisterScreen?
     let interactor: RegisterInteracting
     
-    override func loadView() {
-        screen = RegisterScreen()
-        view = screen
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
+    //MARK: - init
     init(interactor: RegisterInteracting) {
         self.interactor = interactor
         super.init(nibName: nil, bundle: nil)
@@ -34,9 +29,18 @@ final class RegisterViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: -  Lifecycle
+    override func loadView() {
+        screen = RegisterScreen()
+        view = screen
+    }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
 }
 
+//MARK: - RegisterViewControllerDisplay
 extension RegisterViewController: RegisterViewControllerDisplay {
     
 }

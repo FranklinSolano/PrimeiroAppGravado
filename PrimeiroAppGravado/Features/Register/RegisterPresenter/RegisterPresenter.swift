@@ -7,10 +7,12 @@
 
 import UIKit
 
+//MARK: - RegisterPresenting
 protocol RegisterPresenting {
     
 }
 
+//MARK: - RegisterPresenter
 final class RegisterPresenter: RegisterPresenting {
     
     weak var view: RegisterViewControllerDisplay?

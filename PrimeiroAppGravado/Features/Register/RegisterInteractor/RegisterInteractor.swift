@@ -7,11 +7,11 @@
 
 import UIKit
 
+//MARK: - RegisterInteracting
 protocol RegisterInteracting {
-    
-    
 }
-
+ 
+//MARK: - RegisterInteractor
 final class RegisterInteractor: RegisterInteracting {
     
     let presenter: RegisterPresenting

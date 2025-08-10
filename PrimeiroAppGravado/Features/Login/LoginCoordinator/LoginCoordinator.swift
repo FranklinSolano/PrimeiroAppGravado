@@ -7,10 +7,12 @@
 
 import UIKit
 
+//MARK: - LoginCoordinating
 protocol LoginCoordinating{
     func navigationRegisterCoordinator()
 }
 
+//MARK: - LoginCoordinator
 final class LoginCoordinator {
     
     var navigationController: UINavigationController?
@@ -19,6 +21,7 @@ final class LoginCoordinator {
     
 }
 
+//MARK: - LoginCoordinating
 extension LoginCoordinator: LoginCoordinating {
     func navigationRegisterCoordinator() {
         guard let navigationController else {return}
