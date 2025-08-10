@@ -46,6 +46,7 @@ class DSTextField: UITextField {
         self.autocapitalizationType = .none
         self.textColor = DSColors.textColorTitle
         self.translatesAutoresizingMaskIntoConstraints = false
+        self.backgroundColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 0.60)
         
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 12, height: 0))
         self.leftView = paddingView

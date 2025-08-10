@@ -8,10 +8,10 @@
 import Foundation
 
 protocol LoginInteracting {
-    
+    func navigationRegisterinteractor()
 }
 
-final class LoginInteractor: LoginInteracting {
+final class LoginInteractor {
         
     let presenter: LoginPresenting
     private let service: LoginServicing
@@ -21,5 +21,13 @@ final class LoginInteractor: LoginInteracting {
         self.presenter = presenter
         self.service = service
     }
+    
+}
+
+extension LoginInteractor: LoginInteracting {
+    func navigationRegisterinteractor() {
+        presenter.navigationRegisterPresenter()
+    }
+    
     
 }

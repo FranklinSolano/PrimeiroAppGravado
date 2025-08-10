@@ -8,13 +8,25 @@
 import UIKit
 
 protocol LoginCoordinating{
-    
+    func navigationRegisterCoordinator()
 }
 
-final class LoginCoordinator: LoginCoordinating {
+final class LoginCoordinator {
     
     var navigationController: UINavigationController?
     var presenter: LoginPresenting?
+    
+    
+}
+
+extension LoginCoordinator: LoginCoordinating {
+    func navigationRegisterCoordinator() {
+        guard let navigationController else {return}
+        let registerFactoty = RegisterFactory()
+        let registerVC = registerFactoty.makeFactory(navigationController: navigationController)
+        navigationController.pushViewController(registerVC, animated: true)
+    }
+    
     
     
 }

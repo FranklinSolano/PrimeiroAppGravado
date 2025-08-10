@@ -8,10 +8,10 @@
 import Foundation
 
 protocol LoginPresenting {
-    
+    func navigationRegisterPresenter()
 }
 
-final class LoginPresenter: LoginPresenting {
+final class LoginPresenter {
     
     weak var view: LoginViewControllerDisplay?
     let coordinator: LoginCoordinating
@@ -20,5 +20,13 @@ final class LoginPresenter: LoginPresenting {
         self.view = view
         self.coordinator = coordinator
     }
+    
+}
+
+extension LoginPresenter: LoginPresenting {
+    func navigationRegisterPresenter() {
+        coordinator.navigationRegisterCoordinator()
+    }
+    
     
 }

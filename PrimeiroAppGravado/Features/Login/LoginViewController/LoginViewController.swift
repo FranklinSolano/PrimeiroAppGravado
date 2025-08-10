@@ -53,7 +53,7 @@ extension LoginViewController: LoginScreenProtocol {
     }
     
     func actionRegisterButton() {
-        
+        interactor.navigationRegisterinteractor()
     }
     
     

@@ -31,6 +31,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         // Define o LoginViewController como root do UINavigationController
         navigationController.viewControllers = [loginVC]
+        navigationController.setNavigationBarHidden(true, animated: false)
         
         // Define o UINavigationController como rootViewController da janela
         window.rootViewController = navigationController

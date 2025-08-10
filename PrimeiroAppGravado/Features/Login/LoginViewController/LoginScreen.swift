@@ -107,8 +107,8 @@ extension LoginScreen: ViewCodeProtocol {
             forgotPasswordButton.trailingAnchor.constraint(equalTo: trailingAnchor,constant: -28),
             
             loginButton.topAnchor.constraint(equalTo: forgotPasswordButton.bottomAnchor,constant: 60),
-            loginButton.leadingAnchor.constraint(equalTo: emailTextField.leadingAnchor),
-            loginButton.trailingAnchor.constraint(equalTo: emailTextField.trailingAnchor),
+            loginButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+            loginButton.widthAnchor.constraint(equalToConstant: 195),
             loginButton.heightAnchor.constraint(equalToConstant: 50),
             
             registerButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor,constant: -10),
@@ -117,7 +117,6 @@ extension LoginScreen: ViewCodeProtocol {
     }
     
     func setupAdditionalConfiguration() {
-
         configureLabel()
         configureTextField()
         configureButton()
