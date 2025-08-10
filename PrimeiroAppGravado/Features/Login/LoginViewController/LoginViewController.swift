@@ -49,7 +49,7 @@ extension LoginViewController: LoginViewControllerDisplay {
 //MARK: - LoginScreenProtocol
 extension LoginViewController: LoginScreenProtocol {
     func actionForgotPasswrodBuuton() {
-        
+        interactor.navigationForgotInteractor()
     }
     
     func actionLoginButton() {

@@ -21,7 +21,7 @@ final class RegisterFactory {
         let registerVC = RegisterViewController(interactor: interactor)
         presenter.view = registerVC
         coordinator.presenter = presenter
-        return (registerVC)
+        return registerVC
         
         
     }
