@@ -34,6 +34,7 @@ final class ForgotPasswordViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        screen?.delegate = self
     }
 }
 
@@ -45,7 +46,7 @@ extension ForgotPasswordViewController: ForgotPasswordViewControllerDisplay {
 
 extension ForgotPasswordViewController: ForgotPasswordScreenProtocol {
     func actionBackButton() {
-            
+        interactor.navigationBackButtonInteractor()
     }
     
     func actionForgotButton() {

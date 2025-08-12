@@ -11,19 +11,22 @@ import UIKit
 protocol LoginCoordinating{
     func navigationRegisterCoordinator()
     func navigationForgotCoordinator()
+    func navigationTabBarCoordinator()
 }
 
 //MARK: - LoginCoordinator
 final class LoginCoordinator {
     
     var navigationController: UINavigationController?
-    var presenter: LoginPresenting?
-    
     
 }
 
 //MARK: - LoginCoordinating
 extension LoginCoordinator: LoginCoordinating {
+    func navigationTabBarCoordinator() {
+        
+    }
+    
     func navigationForgotCoordinator() {
         guard let navigationController else {return}
         let forgotFactory = ForgotPasswordFactory()

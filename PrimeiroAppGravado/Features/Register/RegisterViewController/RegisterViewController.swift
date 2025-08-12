@@ -37,10 +37,23 @@ final class RegisterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.screen?.delegate = self
     }
 }
 
 //MARK: - RegisterViewControllerDisplay
 extension RegisterViewController: RegisterViewControllerDisplay {
+    
+}
+
+extension RegisterViewController: RegisterScreenProtocol {
+    func actionBackButton() {
+        interactor.navigationBackButtonInteractor()
+    }
+    
+    func actionRegisterButton() {
+        
+    }
+    
     
 }

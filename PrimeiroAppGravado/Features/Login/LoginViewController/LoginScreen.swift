@@ -70,6 +70,15 @@ final class LoginScreen: UIView {
         }
         
     }
+    
+    private func configureTapGesture(){
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard) )
+        addGestureRecognizer(tapGesture)
+    }
+    
+    @objc private func dismissKeyboard(){
+        endEditing(true)
+    }
 }
 
 //MARK: - ViewCodeProtocol
@@ -125,11 +134,22 @@ extension LoginScreen: ViewCodeProtocol {
     func setupAdditionalConfiguration() {
         configureLabel()
         configureTextField()
+        configureTapGesture()
         configureButton()
     }
 }
 
 //MARK: - UITextFieldDelegate
 extension LoginScreen: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == emailTextField {
+            passwordTextField.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
+        return true
+    }
+    
+    
     
 }

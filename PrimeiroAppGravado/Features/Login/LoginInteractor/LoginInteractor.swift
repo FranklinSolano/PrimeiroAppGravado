@@ -11,6 +11,7 @@ import Foundation
 protocol LoginInteracting {
     func navigationRegisterinteractor()
     func navigationForgotInteractor()
+    func navigationTabBarInteractor()
 }
 
 //MARK: - LoginInteractor
@@ -29,6 +30,10 @@ final class LoginInteractor {
 
 //MARK: - LoginInteracting
 extension LoginInteractor: LoginInteracting {
+    func navigationTabBarInteractor() {
+        presenter.navigationTabBarPresenter()
+    }
+    
     func navigationForgotInteractor() {
         presenter.navigationForgotPresenter()
     }

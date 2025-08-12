@@ -9,10 +9,11 @@ import UIKit
 
 //MARK: - RegisterInteracting
 protocol RegisterInteracting {
+    func navigationBackButtonInteractor()
 }
  
 //MARK: - RegisterInteractor
-final class RegisterInteractor: RegisterInteracting {
+final class RegisterInteractor {
     
     let presenter: RegisterPresenting
     private let service: RegisterServicing
@@ -21,4 +22,12 @@ final class RegisterInteractor: RegisterInteracting {
         self.presenter = presenter
         self.service = service
     }
+}
+
+extension RegisterInteractor: RegisterInteracting {
+    func navigationBackButtonInteractor() {
+        presenter.navigationBackButtonPresenter()
+    }
+    
+    
 }

@@ -66,8 +66,22 @@ final class RegisterScreen: UIView {
         emailTextField.setDTO(.init(placeholder: "Digite seu email", isSecureText: false))
         passwordTextField.setDTO(.init(placeholder: "Digite sua senha", isSecureText: true))
         confirmedPasswordTextField.setDTO(.init(placeholder: "Digite sua senha novamente", isSecureText: true))
+        
+        nameTextField.delegate = self
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+        confirmedPasswordTextField.delegate = self
     }
     
+    private func configureTapGesture() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        addGestureRecognizer(tapGesture)  // A view detecta o toque e chama o método para fechar o teclado
+    }
+    
+    @objc private func dismissKeyboard() {
+        endEditing(true)  // Fecha o teclado ao tocar fora dos campos de texto
+    }
+
     
 }
 
@@ -143,5 +157,23 @@ extension RegisterScreen: ViewCodeProtocol {
         configureLabel()
         configureButton()
         configureTextField()
+        configureTapGesture()
+    }
+}
+
+//MARK: - UITextFieldDelegate
+extension RegisterScreen: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        switch textField {
+        case nameTextField:
+            emailTextField.becomeFirstResponder()
+        case emailTextField:
+            passwordTextField.becomeFirstResponder()
+        case passwordTextField:
+            confirmedPasswordTextField.becomeFirstResponder()
+        default:
+            textField.resignFirstResponder()
+        }
+        return true
     }
 }

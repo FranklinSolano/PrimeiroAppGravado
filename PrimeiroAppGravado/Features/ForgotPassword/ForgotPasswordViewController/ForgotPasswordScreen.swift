@@ -40,6 +40,7 @@ final class ForgotPasswordScreen: UIView {
     
     private func configureTextField(){
         emailTextField.setDTO(.init(placeholder: "Digite seu email", isSecureText: false))
+        emailTextField.delegate = self
     }
     
     private func configureButton(){
@@ -52,6 +53,15 @@ final class ForgotPasswordScreen: UIView {
         backButton.onClick { [weak self] in
             self?.delegate?.actionBackButton()
         }
+    }
+    
+    private func configureTapGesture(){
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard) )
+        addGestureRecognizer(tapGesture)
+    }
+    
+    @objc private func dismissKeyboard(){
+        endEditing(true)
     }
     
 }
@@ -102,7 +112,12 @@ extension ForgotPasswordScreen: ViewCodeProtocol {
         configureLabel()
         configureButton()
         configureTextField()
+        configureTapGesture()
     }
-    
-    
+}
+
+extension ForgotPasswordScreen: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+    }
 }

@@ -9,11 +9,11 @@ import UIKit
 
 //MARK: - ForgotPasswordPresenting
 protocol ForgotPasswordPresenting{
-    
+    func navigationBackButtonPresenter()
 }
 
 //MARK: - ForgotPasswordPresenter
-final class ForgotPasswordPresenter: ForgotPasswordPresenting {
+final class ForgotPasswordPresenter {
     
     weak var view: ForgotPasswordViewControllerDisplay?
     let coordinator: ForgotPasswordCoordinating
@@ -22,5 +22,13 @@ final class ForgotPasswordPresenter: ForgotPasswordPresenting {
         self.view = view
         self.coordinator = coordinator
     }
+    
+}
+
+extension ForgotPasswordPresenter: ForgotPasswordPresenting {
+    func navigationBackButtonPresenter() {
+        coordinator.navigationBackButtonCoordinator()
+    }
+    
     
 }

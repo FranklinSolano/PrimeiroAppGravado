@@ -9,11 +9,11 @@ import UIKit
 
 //MARK: - RegisterPresenting
 protocol RegisterPresenting {
-    
+    func navigationBackButtonPresenter()
 }
 
 //MARK: - RegisterPresenter
-final class RegisterPresenter: RegisterPresenting {
+final class RegisterPresenter {
     
     weak var view: RegisterViewControllerDisplay?
     let coordinator: RegisterCoordinating
@@ -21,6 +21,12 @@ final class RegisterPresenter: RegisterPresenting {
     init(view: RegisterViewControllerDisplay? = nil, coordinator: RegisterCoordinating) {
         self.view = view
         self.coordinator = coordinator
+    }
+}
+
+extension RegisterPresenter: RegisterPresenting {
+    func navigationBackButtonPresenter() {
+        coordinator.navigationBackButtonCoordinator()
     }
     
     

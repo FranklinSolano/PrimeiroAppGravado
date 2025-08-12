@@ -11,6 +11,7 @@ import Foundation
 protocol LoginPresenting {
     func navigationRegisterPresenter()
     func navigationForgotPresenter()
+    func navigationTabBarPresenter()
 }
 
 //MARK: - LoginPresenter
@@ -28,6 +29,10 @@ final class LoginPresenter {
 
 //MARK: - LoginPresenting
 extension LoginPresenter: LoginPresenting {
+    func navigationTabBarPresenter() {
+        coordinator.navigationTabBarCoordinator()
+    }
+    
     func navigationForgotPresenter() {
         coordinator.navigationForgotCoordinator()
     }

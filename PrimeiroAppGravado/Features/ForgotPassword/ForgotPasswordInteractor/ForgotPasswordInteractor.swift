@@ -9,11 +9,11 @@ import UIKit
 
 //MARK: - ForgotPasswordInteracting
 protocol ForgotPasswordInteracting {
-    
+    func navigationBackButtonInteractor()
 }
 
 //MARK: - ForgotPasswordInteractor
-final class ForgotPasswordInteractor: ForgotPasswordInteracting {
+final class ForgotPasswordInteractor {
     
     let presenter: ForgotPasswordPresenting
     private let service: ForgotPasswordServicing
@@ -22,4 +22,12 @@ final class ForgotPasswordInteractor: ForgotPasswordInteracting {
         self.presenter = presenter
         self.service = service
     }
+}
+
+extension ForgotPasswordInteractor: ForgotPasswordInteracting {
+    func navigationBackButtonInteractor() {
+        presenter.navigationBackButtonPresenter()
+    }
+    
+    
 }
